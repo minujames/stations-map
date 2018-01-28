@@ -1,10 +1,10 @@
 import React from "react";
 
 const Header = () =>  
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <span class="navbar-brand">VOLTA</span>
+  <nav className="navbar navbar-default">
+    <div className="container">
+      <div className="navbar-header">
+        <span className="navbar-brand">VOLTA</span>
       </div>
     </div>
   </nav>
