@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import API from '../../utils/API';
 
 import StationsMap from "../StationsMap"
-// import {STATUS_ALL, STATUS_ACTIVE, STATUS_UNDER_CONSTRUCTION, STATUS_NEEDS_SERVICE} 
-//   from '../../utils/Constants';
+
+const DEFAULT_STATION_FILTER = "all";
 
 class Stations extends Component {
  
@@ -13,9 +13,8 @@ class Stations extends Component {
   }
 
   componentDidMount(){
-
     let status = this.props.match.params.status; 
-    status = status ? this.getStationStatus(status): "all";
+    status = status ? this.getStationStatus(status): DEFAULT_STATION_FILTER;
 
     API.getStations()
     .then(res => {
@@ -30,16 +29,13 @@ class Stations extends Component {
   }
 
   componentWillReceiveProps(nextProps){
-
     const status = nextProps.match.params.status ? 
-      this.getStationStatus(nextProps.match.params.status) : "all";
-    console.log(status);
+      this.getStationStatus(nextProps.match.params.status) : DEFAULT_STATION_FILTER;
     this.setState({status})
   }
 
   getStationsByStatus(){
-    console.log(this.state.status);
-    if(this.state.status === "all"){
+    if(this.state.status === DEFAULT_STATION_FILTER){
       return this.state.stations;
     }
     else {
@@ -52,7 +48,7 @@ class Stations extends Component {
 
   render(){
     if(!this.state.stations.length){
-      return <div className="map-wrapper">loading...</div>
+      return <div className="conatiner">loading...</div>
     }
     else{
       return (

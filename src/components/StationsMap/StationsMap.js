@@ -2,22 +2,26 @@ import React, {Component} from 'react';
 import { Map, TileLayer } from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster';
 
+const DEFAULT_LAT =  39.5;
+const DEFAULT_LNG = -98.35;
+const DEFAULT_ZOOM = 4;
 
 class StationsMap extends Component {
 
   state = {
     stations: this.props.stations,
-    lat: 39.5,
-    lng: -98.35,
-    zoom: 4
+    lat: DEFAULT_LAT,
+    lng: DEFAULT_LNG,
+    zoom: DEFAULT_ZOOM
   }
 
-  // componentDidMount(){
-  //   console.log(this.props.matcj)
-  // }
-
   componentWillReceiveProps(nextProps){
-    this.setState({stations: nextProps.stations})
+    this.setState({
+      stations: nextProps.stations, 
+      zoom: DEFAULT_ZOOM, 
+      lat: DEFAULT_LAT, 
+      lng: DEFAULT_LNG
+    })
   }
 
   getPopup(station) {
@@ -28,6 +32,16 @@ class StationsMap extends Component {
       <b>Status: ${station.status}</b>
     </div>
   `);
+  }
+
+  handleZoom = (event) =>{
+    const zoom =  event.target.getZoom();
+    const lat = event.target.getCenter().lat;
+    const lng = event.target.getCenter().lng;
+
+    this.setState({
+      zoom, lat, lng
+    })
   }
 
   render() {
@@ -44,7 +58,8 @@ class StationsMap extends Component {
         center={center} 
         zoom={this.state.zoom} 
         minZoom={this.state.zoom}
-        maxZoom={18}>
+        maxZoom={18}
+        onZoomEnd={this.handleZoom}>
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
