@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import API from '../../utils/API';
-
 import StationsMap from "../StationsMap"
 
 const DEFAULT_STATION_FILTER = "all";
@@ -9,12 +8,11 @@ class Stations extends Component {
  
   state = {
     stations : [],
-    status: "all"
+    status: DEFAULT_STATION_FILTER
   }
 
   componentDidMount(){
-    let status = this.props.match.params.status; 
-    status = status ? this.getStationStatus(status): DEFAULT_STATION_FILTER;
+    const status = this.getStationStatus(this.props); 
 
     API.getStations()
     .then(res => {
@@ -24,14 +22,16 @@ class Stations extends Component {
     .catch(err => console.log(err));
   }
 
-  getStationStatus(pathParam){
-    return pathParam.replace(/-/g, " ");
+  componentWillReceiveProps(nextProps){
+    const status = this.getStationStatus(nextProps);
+    this.setState({status})
   }
 
-  componentWillReceiveProps(nextProps){
-    const status = nextProps.match.params.status ? 
-      this.getStationStatus(nextProps.match.params.status) : DEFAULT_STATION_FILTER;
-    this.setState({status})
+  getStationStatus(propsObj){
+    let status = propsObj.match.params.status;
+    status = status ? status.replace(/-/g, " "): DEFAULT_STATION_FILTER;
+
+    return status;
   }
 
   getStationsByStatus(){
@@ -39,10 +39,9 @@ class Stations extends Component {
       return this.state.stations;
     }
     else {
-      const filteredStations = this.state.stations.filter(station => (
+      return this.state.stations.filter(station => (
         station.status === this.state.status
       ));
-      return filteredStations;
     }
   }
 
@@ -53,7 +52,7 @@ class Stations extends Component {
     else{
       return (
         <div className="map-wrapper">
-         { this.state.stations.length && <StationsMap stations={this.getStationsByStatus()}/>}
+          <StationsMap stations={this.getStationsByStatus()}/>
         </div>
       );
     }

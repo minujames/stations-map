@@ -1,8 +1,10 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 import './App.css';
+
 import Header from './components/Header';
 import Stations from './components/Stations';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () =>  
 
@@ -10,8 +12,8 @@ const App = () =>
     <div className="main-wrapper">
       <Header/>
       <Switch>
-        <Route exact path= {process.env.PUBLIC_URL + "/"} component={Stations} />
-        <Route exact path= {process.env.PUBLIC_URL + "/:status"} component={Stations} />
+        <Route exact path="/" component={Stations} />
+        <Route exact path="/:status" component={Stations} />
       </Switch>
     </div>
   </Router>
