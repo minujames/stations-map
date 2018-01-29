@@ -2,11 +2,14 @@ import React, { Component } from 'react'
 import API from '../../utils/API';
 
 import StationsMap from "../StationsMap"
+// import {STATUS_ALL, STATUS_ACTIVE, STATUS_UNDER_CONSTRUCTION, STATUS_NEEDS_SERVICE} 
+//   from '../../utils/Constants';
 
 class Stations extends Component {
  
   state = {
-    stations : []
+    stations : [],
+    status: "all"
   }
 
   componentDidMount(){
@@ -17,14 +20,37 @@ class Stations extends Component {
     .catch(err => console.log(err));
   }
 
-  render(){
-    return (
-      <div className="map-wrapper">
-        <StationsMap stations={this.state.stations}/>
-      </div>
-    );
+  componentWillReceiveProps(nextProps){
+    const status = nextProps.match.params.status.replace(/_/g, " ");
+    console.log(status);
+    this.setState({status})
   }
 
+  getStationsByStatus(){
+    console.log(this.state.status);
+    if(this.state.status === "all"){
+      return this.state.stations;
+    }
+    else {
+      const filteredStations = this.state.stations.filter(station => (
+        station.status === this.state.status
+      ));
+      return filteredStations;
+    }
+  }
+
+  render(){
+    if(!this.state.stations.length){
+      return <div className="map-wrapper">loading...</div>
+    }
+    else{
+      return (
+        <div className="map-wrapper">
+         { this.state.stations.length && <StationsMap stations={this.getStationsByStatus()}/>}
+        </div>
+      );
+    }
+  }
 }
 
 export default Stations;
