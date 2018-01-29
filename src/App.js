@@ -8,7 +8,7 @@ import Stations from './components/Stations';
 
 const App = () =>  
 
-  <Router>
+  <Router basename={process.env.PUBLIC_URL}>
     <div className="main-wrapper">
       <Header/>
       <Switch>
