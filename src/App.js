@@ -7,7 +7,7 @@ import Stations from './components/Stations';
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="main-wrapper">
         <Header/>
         <Stations/>
       </div>

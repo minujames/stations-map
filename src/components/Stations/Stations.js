@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import API from '../../utils/API';
 
+import StationsMap from "../StationsMap"
+
 class Stations extends Component {
  
   state = {
@@ -17,12 +19,8 @@ class Stations extends Component {
 
   render(){
     return (
-      <div className="container">
-      {
-        this.state.stations.map(station => (
-          <p key={station.id}>{station.name}</p>
-        ))
-      }
+      <div className="map-wrapper">
+        <StationsMap stations={this.state.stations}/>
       </div>
     );
   }
