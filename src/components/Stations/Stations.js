@@ -13,15 +13,26 @@ class Stations extends Component {
   }
 
   componentDidMount(){
+
+    let status = this.props.match.params.status; 
+    status = status ? this.getStationStatus(status): "all";
+
     API.getStations()
     .then(res => {
-      this.setState({stations: res.data});
+      this.setState({stations: res.data,
+        status });
     })
     .catch(err => console.log(err));
   }
 
+  getStationStatus(pathParam){
+    return pathParam.replace(/-/g, " ");
+  }
+
   componentWillReceiveProps(nextProps){
-    const status = nextProps.match.params.status.replace(/_/g, " ");
+
+    const status = nextProps.match.params.status ? 
+      this.getStationStatus(nextProps.match.params.status) : "all";
     console.log(status);
     this.setState({status})
   }

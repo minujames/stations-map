@@ -12,9 +12,9 @@ class StationsMap extends Component {
     zoom: 4
   }
 
-  componentDidMount(){
-    console.log(this.props)
-  }
+  // componentDidMount(){
+  //   console.log(this.props.matcj)
+  // }
 
   componentWillReceiveProps(nextProps){
     this.setState({stations: nextProps.stations})
@@ -24,8 +24,7 @@ class StationsMap extends Component {
   return (`
     <div>
       <b>${station.name}</b>
-      <p>${station.street_address}, ${station.city}</p>
-      <p>${station.state}</p>
+      <p>${station.street_address}, ${station.city}, ${station.state}</p>
       <b>Status: ${station.status}</b>
     </div>
   `);

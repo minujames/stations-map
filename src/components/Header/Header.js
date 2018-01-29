@@ -10,20 +10,20 @@ const Header = (props) =>
 
       <ul className="nav navbar-nav  navbar-right">
 
-        <li className={window.location.pathname === "/stations/all" ? "active" : ""}>
-          <Link to="/stations/all">All</Link>
+        <li className={( window.location.pathname === "/") ? "active" : ""}>
+          <Link to="/">All</Link>
         </li>
 
-        <li className={window.location.pathname === "/stations/active" ? "active" : ""}>
-          <Link to="/stations/active">Active</Link>
+        <li className={window.location.pathname === "/active" ? "active" : ""}>
+          <Link to="/active">Active</Link>
         </li>
 
-        <li className={window.location.pathname === "/stations/needs_service" ? "active" : ""}>
-          <Link to="/stations/needs_service">Needs Service</Link>
+        <li className={window.location.pathname === "/needs-service" ? "active" : ""}>
+          <Link to="/needs-service">Needs Service</Link>
         </li>
 
-        <li className={window.location.pathname === "/stations/under_construction" ? "active" : ""}>
-          <Link to="/stations/under_construction">Under Construction</Link>
+        <li className={window.location.pathname === "/under-construction" ? "active" : ""}>
+          <Link to="/under-construction">Under Construction</Link>
         </li>
       </ul>
     </div>
