@@ -1,5 +1,6 @@
 import React from 'react';
-import { Map, TileLayer, Marker, Popup } from 'react-leaflet'
+import { Map, TileLayer, Popup } from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-markercluster';
 
 
 const StationsMap = ({stations}) => {
@@ -10,24 +11,18 @@ const StationsMap = ({stations}) => {
   const center = [39.5, -98.35];
   const zoom = 4;
 
-  const stationMarkers = stations.map(station => (
-    <Marker 
-      position={[station.location.coordinates[1], station.location.coordinates[0]]} 
-      key={station.id}>
-      <Popup>
-        <span>{station.name}</span>
-      </Popup>
-    </Marker>
+  const  markers = stations.map(station => (
+     {position: [station.location.coordinates[1], station.location.coordinates[0]]}
   ));
 
   return (
-    <Map center={center} zoom={zoom} minZoom={zoom}>
+    <Map className="markercluster-map" center={center} zoom={zoom} minZoom={zoom}>
       <TileLayer
-        attribution="&amp;copy <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
       />
 
-      {stationMarkers}
+      <MarkerClusterGroup markers={markers} />
     </Map>
   );
 }
