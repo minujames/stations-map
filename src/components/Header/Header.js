@@ -10,19 +10,19 @@ const Header = (props) =>
 
       <ul className="nav navbar-nav  navbar-right">
 
-        <li className={( window.location.pathname === "/") ? "active" : ""}>
+        <li className={( window.location.pathname === `${process.env.PUBLIC_URL}/`) ? "active" : ""}>
           <Link to="/">All</Link>
         </li>
 
-        <li className={window.location.pathname === "/active" ? "active" : ""}>
+        <li className={window.location.pathname === `${process.env.PUBLIC_URL}/active` ? "active" : ""}>
           <Link to="/active">Active</Link>
         </li>
 
-        <li className={window.location.pathname === "/needs-service" ? "active" : ""}>
+        <li className={window.location.pathname === `${process.env.PUBLIC_URL}/needs-service` ? "active" : ""}>
           <Link to="/needs-service">Needs Service</Link>
         </li>
 
-        <li className={window.location.pathname === "/under-construction" ? "active" : ""}>
+        <li className={window.location.pathname === `${process.env.PUBLIC_URL}/under-construction` ? "active" : ""}>
           <Link to="/under-construction">Under Construction</Link>
         </li>
       </ul>
