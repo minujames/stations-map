@@ -6,8 +6,7 @@ import './App.css';
 import Header from './components/Header';
 import Stations from './components/Stations';
 
-const App = () =>  
-
+const App = () =>
   <Router basename={process.env.PUBLIC_URL}>
     <div className="main-wrapper">
       <Header/>

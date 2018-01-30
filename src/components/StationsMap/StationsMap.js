@@ -6,6 +6,7 @@ const DEFAULT_LAT =  39.5;
 const DEFAULT_LNG = -98.35;
 const DEFAULT_ZOOM = 4;
 
+/* Component to display leaflet map and station markers */
 class StationsMap extends Component {
 
   state = {
@@ -15,6 +16,7 @@ class StationsMap extends Component {
     zoom: DEFAULT_ZOOM
   }
 
+  /* Resetting to default zoom and map center when any of the status filters in the header is selected */
   componentWillReceiveProps(nextProps){
     this.setState({
       stations: nextProps.stations, 
@@ -24,6 +26,7 @@ class StationsMap extends Component {
     })
   }
 
+  /* Popup for station marker. Shows address and status */
   getPopup(station) {
   return (`
     <div>
@@ -34,6 +37,7 @@ class StationsMap extends Component {
   `);
   }
 
+  /* Updating the states zoom, lat and lng on each zoom */
   handleZoom = (event) =>{
     const zoom =  event.target.getZoom();
     const lat = event.target.getCenter().lat;
