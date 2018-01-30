@@ -2,7 +2,7 @@
 
 **Live application: http://minujames.com/stations-map/**
 
-This is a react app to list all volta stations in a map. This app also allows to filter stations based on status.
+This is a react app to list all Volta stations on a map. This app also allows the filtering of stations based on their status.
 
 ## Technologies:
 
@@ -23,7 +23,6 @@ This is a react app to list all volta stations in a map. This app also allows to
     cd stations-map/
     yarn install 
     yarn start
-
 
 
 ## Author
