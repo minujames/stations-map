@@ -19,12 +19,11 @@ This is a react app to list all volta stations in a map. This app also allows to
 * [gh-pages](https://www.npmjs.com/package/gh-pages) - Publish files to a gh-pages branch on GitHub
 
 ## Installation
-    ```
     git clone https://github.com/minujames/stations-map.git
     cd stations-map/
     yarn install 
     yarn start
-    ```
+
 
 
 ## Author
