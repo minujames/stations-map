@@ -16,6 +16,18 @@ class StationsMap extends Component {
     zoom: DEFAULT_ZOOM
   }
 
+  componentDidMount(){
+    console.log("component did mount");
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log(position.coords.latitude, position.coords.longitude);
+     this.setState({
+        lat: position.coords.latitude, 
+        lng: position.coords.longitude,
+        zoom: 8
+      })
+    });
+  }
+
   /* Resetting to default zoom and map center when any of the status filters in the header is selected */
   componentWillReceiveProps(nextProps){
     this.setState({
