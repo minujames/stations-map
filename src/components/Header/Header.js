@@ -21,10 +21,6 @@ const Header = (props) =>
         <li className={window.location.pathname === `${process.env.PUBLIC_URL}/needs-service` ? "active" : ""}>
           <Link to="/needs-service">Needs Service</Link>
         </li>
-
-        <li className={window.location.pathname === `${process.env.PUBLIC_URL}/under-construction` ? "active" : ""}>
-          <Link to="/under-construction">Under Construction</Link>
-        </li>
       </ul>
     </div>
   </nav>

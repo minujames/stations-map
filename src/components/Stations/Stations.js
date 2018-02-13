@@ -19,7 +19,12 @@ class Stations extends Component {
 
     API.getStations()
     .then(res => {
-      this.setState({stations: res.data,
+
+      const stns = res.data.filter((station) => {
+        return station.status != 'under construction'
+      });
+
+      this.setState({stations: stns,
         status });
     })
     .catch(err => console.log(err));
